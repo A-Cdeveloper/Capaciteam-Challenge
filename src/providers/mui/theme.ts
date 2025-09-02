@@ -41,30 +41,31 @@ const theme = createTheme({
       contrastText: "#fff",
     },
     background: {
-      default: "#fdfafa",
+      default: "#F7F8FCFF",
       paper: "#ffffff",
     },
     text: {
       primary: "#000000",
       secondary: "rgba(0,0,0,0.7)",
     },
+    divider: "rgba(0,0,0,0.12)",
   },
   typography: {
-    fontSize: 16, // globalni font
+    fontSize: 16,
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightMedium: 500,
     fontWeightBold: 700,
-    h1: { fontSize: "2.5rem", fontWeight: 700 },
+    h1: { fontSize: "2.3rem", fontWeight: 700 },
     h2: { fontSize: "2rem", fontWeight: 600 },
     h3: { fontSize: "1.75rem", fontWeight: 600 },
     body1: { fontSize: "1rem" },
     body2: { fontSize: "0.875rem" },
     button: { textTransform: "none", fontWeight: 500 },
   },
-  spacing: 8, // spacing scale → spacing(2) = 16px
+  spacing: 10,
   breakpoints: {
-    values: { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536 },
+    values: { xs: 0, sm: 376, md: 768, lg: 1024, xl: 1440 },
   },
 });
 
