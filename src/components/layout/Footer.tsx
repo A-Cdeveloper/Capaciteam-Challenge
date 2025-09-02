@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from '@mui/material';
 
 const Footer = () => {
   return (
@@ -6,7 +6,7 @@ const Footer = () => {
       component="footer"
       sx={(theme) => ({
         borderTop: `1px solid ${theme.palette.divider}`,
-        textAlign: "center",
+        textAlign: 'center',
         py: 1,
       })}
     >

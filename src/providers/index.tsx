@@ -1,5 +1,5 @@
-import { MuiProvider } from "./mui/MuiProvider";
-import { QueryProvider } from "./react-query/QueryProvider";
+import { MuiProvider } from './mui/MuiProvider';
+import { QueryProvider } from './react-query/QueryProvider';
 
 interface ProvidersProps {
   children: React.ReactNode;

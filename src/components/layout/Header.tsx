@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from '@mui/material';
 
 const Header = () => {
   return (
@@ -6,7 +6,7 @@ const Header = () => {
       component="header"
       sx={(theme) => ({
         borderBottom: `1px solid ${theme.palette.divider}`,
-        textAlign: "center",
+        textAlign: 'center',
         py: 1,
       })}
     >
