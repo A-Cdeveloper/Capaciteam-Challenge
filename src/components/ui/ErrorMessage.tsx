@@ -2,7 +2,7 @@ import { Box, Button, Container, Paper, Typography } from '@mui/material';
 
 import { ErrorOutline } from '@mui/icons-material';
 
-export type ErrorAlertProps = {
+type ErrorAlertProps = {
   error: Error | null;
   onRetry?: () => void;
   title?: string;
