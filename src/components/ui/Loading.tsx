@@ -1,6 +1,6 @@
 import { CircularProgress, Container, Stack, Typography } from '@mui/material';
 
-const Loading = () => {
+export const Loading = () => {
   return (
     <Container maxWidth="lg">
       <Stack direction="column" alignItems="center" justifyContent="center" height="50vh">
@@ -10,5 +10,3 @@ const Loading = () => {
     </Container>
   );
 };
-
-export default Loading;
