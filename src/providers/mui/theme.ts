@@ -1,5 +1,5 @@
 // src/theme.ts
-import { createTheme } from '@mui/material/styles';
+import { alpha, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -66,6 +66,20 @@ const theme = createTheme({
   spacing: 10,
   breakpoints: {
     values: { xs: 0, sm: 376, md: 768, lg: 1024, xl: 1440 },
+  },
+  components: {
+    MuiTableCell: {
+      styleOverrides: {
+        head: ({ theme }) => ({
+          padding: '8px 10px',
+          fontWeight: 600,
+          backgroundColor: alpha(theme.palette.divider, 0.1),
+        }),
+        body: {
+          padding: '10px',
+        },
+      },
+    },
   },
 });
 

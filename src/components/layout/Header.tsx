@@ -7,7 +7,7 @@ const Header = () => {
       sx={(theme) => ({
         borderBottom: `1px solid ${theme.palette.divider}`,
         textAlign: 'center',
-        py: 1,
+        py: 2,
       })}
     >
       <Typography variant="h1" color="primary.main">
