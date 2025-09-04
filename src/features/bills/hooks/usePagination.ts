@@ -1,33 +1,41 @@
-import { useState } from 'react';
+import { useQueryState, parseAsInteger } from 'nuqs';
 
 type UsePaginationProps = {
   pageSize: number;
-  initialPage?: number;
 };
 
 type UsePaginationResponse = {
   page: number;
-  skip: number;
+  pageSize: number;
   handleChangePage: (event: unknown, newPage: number) => void;
+  handleChangePageSize: (event: React.ChangeEvent<HTMLInputElement>) => void;
   setPage: (page: number) => void;
 };
 
 export const usePagination = ({
-  pageSize,
-  initialPage = 0,
+  pageSize: initialPageSize,
 }: UsePaginationProps): UsePaginationResponse => {
-  const [page, setPage] = useState(initialPage);
-
-  const skip = page * pageSize;
+  const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(1));
+  const [pageSize, setPageSize] = useQueryState(
+    'limit',
+    parseAsInteger.withDefault(initialPageSize)
+  );
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
+  const handleChangePageSize = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newPageSize = parseInt(event.target.value, 10);
+    setPageSize(newPageSize);
+    setPage(1); // Reset to first page when changing page size
+  };
+
   return {
     page,
-    skip,
+    pageSize,
     handleChangePage,
+    handleChangePageSize,
     setPage,
   };
 };

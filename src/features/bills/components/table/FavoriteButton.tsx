@@ -30,7 +30,7 @@ const FavoriteButton = memo(({ billNo, billYear }: FavoriteButtonProps) => {
         );
       }}
     >
-      {isFavorite ? <Favorite /> : <FavoriteBorder />}
+      {isFavorite ? <Favorite fontSize="small" /> : <FavoriteBorder fontSize="small" />}
     </IconButton>
   );
 });

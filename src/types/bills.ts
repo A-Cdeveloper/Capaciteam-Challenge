@@ -10,8 +10,24 @@ export type Sponsor = {
   };
 };
 
-export type BillStatus = 'Enacted' | 'Pending' | 'Draft';
-export type BillType = 'Private' | 'Public' | 'Consolidation' | 'Other';
+export const BILL_STATUS = {
+  CURRENT: 'Current',
+  WITHDRAWN: 'Withdrawn',
+  ENACTED: 'Enacted',
+  REJECTED: 'Rejected',
+  DEFEATED: 'Defeated',
+  LAPSED: 'Lapsed',
+} as const;
+
+export const BILL_TYPE = {
+  PRIVATE: 'Private',
+  PUBLIC: 'Public',
+  CONSOLIDATION: 'Consolidation',
+  OTHER: 'Other',
+} as const;
+
+export type BillStatus = (typeof BILL_STATUS)[keyof typeof BILL_STATUS];
+export type BillType = (typeof BILL_TYPE)[keyof typeof BILL_TYPE];
 
 export type Bill = {
   billNo: string;
