@@ -9,9 +9,9 @@ type BillsTableBodyProps = {
 const BillsTableBody = ({ bills }: BillsTableBodyProps) => {
   return (
     <TableBody>
-      {bills.map((bill, index) => (
-        // some data from api have the same billNo
-        <BillTableRow key={bill.billNo + index} bill={bill} />
+      {bills.map((bill) => (
+        // use billNo + billYear as stable unique key
+        <BillTableRow key={`${bill.billNo}-${bill.billYear}`} bill={bill} />
       ))}
     </TableBody>
   );
