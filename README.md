@@ -1,6 +1,6 @@
 # Capaciteam Challenge
 
-A modern React application for browsing and managing Irish legislation bills with advanced filtering, pagination, and favorites functionality.
+A modern React application for browsing and managing Irish legislation bills with advanced filtering, pagination, favorites functionality, and interactive modal details with bilingual support.
 
 ## 🚀 Features
 
@@ -8,17 +8,19 @@ A modern React application for browsing and managing Irish legislation bills wit
 - **Advanced Filtering**: Filter bills by status (Current, Enacted, Withdrawn, etc.)
 - **Smart Pagination**: 1-based pagination with URL synchronization
 - **Favorites System**: Mark bills as favorites
+- **Modal Details**: Interactive bill details modal with compound component pattern
 - **URL State Management**: All filters and pagination state synced with URL
 - **Type Safety**: Full TypeScript implementation
 
 ## 🛠️ Technologies
 
-- **React 19** with TypeScript
+- **React 19** with TypeScript and compound component patterns
 - **Vite** - Fast build tool and dev server
 - **Material-UI (MUI)** - Component library with custom theming
 - **TanStack React Query** - Server state management and caching
 - **Zustand** - Client state management for favorites
 - **nuqs** - Type-safe URL state management
+- **Portal API** - Modal rendering outside component tree
 - **ESLint + Prettier** - Code quality and formatting
 
 ## 📁 Project Structure
@@ -27,12 +29,13 @@ A modern React application for browsing and managing Irish legislation bills wit
 src/
 ├── components/          # Shared UI components
 │   ├── layout/          # Header, Footer, MainContent
-│   └── ui/              # Loading, Error, EmptyState
+│   └── ui/              # Loading, Error, EmptyState, Tabs
 ├── features/
 │   └── bills/           # Bills feature module
 │       ├── api/         # API calls (fetchBills)
 │       ├── components/  # Bill-specific components
 │       │   ├── filters/ # BillStatusFilter
+│       │   ├── modal/   # BillModal compound component
 │       │   └── table/   # Table components
 │       ├── hooks/       # Custom hooks
 │       │   ├── useBills.ts
