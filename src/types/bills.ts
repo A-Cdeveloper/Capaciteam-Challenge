@@ -15,6 +15,7 @@ export type BillType = 'Private' | 'Public' | 'Consolidation' | 'Other';
 
 export type Bill = {
   billNo: string;
+  billYear: string;
   billType: BillType;
   status: BillStatus;
   sponsors: Sponsor[];
