@@ -23,7 +23,8 @@ const FavoriteButton = memo(({ billNo, billYear }: FavoriteButtonProps) => {
       sx={{
         color: isFavorite ? theme.palette.warning.main : theme.palette.text.secondary,
       }}
-      onClick={() => {
+      onClick={(e) => {
+        e.stopPropagation(); // prevent the click from bubbling up to the table row
         toggleFavorite(uniqueId);
         console.log(
           `Request to ${isFavorite ? 'unfavourite' : 'favourite'} a bill ${billNo} (${billYear}) was dispatched to the server`
