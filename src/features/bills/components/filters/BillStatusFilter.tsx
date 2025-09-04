@@ -25,7 +25,7 @@ const BillStatusFilter = memo(({ value, onChange }: BillStatusFilterProps) => {
         label="Bill Status"
         onChange={handleChange}
       >
-        <MenuItem value={ALL_STATUS}>All Statuses</MenuItem>
+        <MenuItem value={ALL_STATUS}>All</MenuItem>
         {Object.values(BILL_STATUS).map((status) => (
           <MenuItem key={status} value={status}>
             {status}

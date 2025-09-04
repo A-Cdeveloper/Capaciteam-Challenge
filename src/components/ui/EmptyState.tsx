@@ -1,5 +1,4 @@
 import { Box, Container, Paper, Typography } from '@mui/material';
-import { InboxOutlined } from '@mui/icons-material';
 
 type EmptyStateProps = {
   title?: string;
@@ -30,13 +29,6 @@ export const EmptyState = ({
             width: '100%',
           }}
         >
-          <InboxOutlined
-            sx={{
-              fontSize: 64,
-              color: 'text.secondary',
-              mb: 2,
-            }}
-          />
           <Typography variant="h5" color="text.secondary" gutterBottom>
             {title}
           </Typography>

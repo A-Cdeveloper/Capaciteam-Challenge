@@ -59,6 +59,9 @@ const theme = createTheme({
     h1: { fontSize: '2.3rem', fontWeight: 700 },
     h2: { fontSize: '2rem', fontWeight: 600 },
     h3: { fontSize: '1.75rem', fontWeight: 600 },
+    h4: { fontSize: '1.5rem', fontWeight: 500 },
+    h5: { fontSize: '1.25rem', fontWeight: 500 },
+    h6: { fontSize: '1rem', fontWeight: 500 },
     body1: { fontSize: '1rem' },
     body2: { fontSize: '0.875rem' },
     button: { textTransform: 'none', fontWeight: 500 },
@@ -71,12 +74,12 @@ const theme = createTheme({
     MuiTableCell: {
       styleOverrides: {
         head: ({ theme }) => ({
-          padding: '8px 10px',
+          padding: '12px 10px',
           fontWeight: 600,
           backgroundColor: alpha(theme.palette.divider, 0.1),
         }),
         body: {
-          padding: '10px',
+          padding: '12px',
         },
       },
     },

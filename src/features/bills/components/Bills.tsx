@@ -1,6 +1,6 @@
 import { Box, Paper, Table, TableContainer, TablePagination } from '@mui/material';
 
-import { EmptyState, ErrorMessage, Loading } from '@/components/ui';
+import { ErrorMessage, Loading } from '@/components/ui';
 import { PAGE_SIZE } from '@/config/constants';
 import type { BillStatus } from '@/types';
 import { useBills } from '@/features/bills/hooks/useBills';
@@ -22,10 +22,6 @@ const Bills = () => {
 
   if (isLoading) return <Loading />;
   if (error) return <ErrorMessage error={error} onRetry={refetch} title="Failed to load bills" />;
-  if (data?.resultsLength === 0)
-    return (
-      <EmptyState title="No bills found" message="There are no bills to display at this time." />
-    );
 
   return (
     <Box>
