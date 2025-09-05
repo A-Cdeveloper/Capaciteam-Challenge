@@ -1,5 +1,5 @@
 import { Footer, Header, MainContent } from '@/components/layout';
-import Bills from '@/features/bills/components/Bills';
+import BillsPage from '@/pages/BillsPage';
 import { Stack } from '@mui/material';
 import { NuqsAdapter } from 'nuqs/adapters/react';
 
@@ -9,7 +9,7 @@ function App() {
       <Stack direction="column" height="100vh">
         <Header />
         <MainContent>
-          <Bills />
+          <BillsPage />
         </MainContent>
         <Footer />
       </Stack>
