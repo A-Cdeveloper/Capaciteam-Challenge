@@ -5,15 +5,22 @@ import BillTableRow from './BillTableRow';
 
 type BillsTableBodyProps = {
   bills: Bill[];
+  activeTab?: 'all' | 'favorites';
 };
 
-const BillsTableBody = ({ bills }: BillsTableBodyProps) => {
+const BillsTableBody = ({ bills, activeTab = 'all' }: BillsTableBodyProps) => {
   if (bills.length === 0) {
+    const isFavoritesTab = activeTab === 'favorites';
+    const title = isFavoritesTab ? 'No favorites yet' : 'No bills found';
+    const message = isFavoritesTab
+      ? "You haven't added any bills to your favorites yet. Click the heart icon on any bill to add it to your favorites."
+      : 'There are no bills to display.';
+
     return (
       <TableBody>
         <TableRow>
           <TableCell colSpan={5} sx={{ border: 'none', py: 8 }}>
-            <EmptyState title="No bills found" message="There are no bills to display." />
+            <EmptyState title={title} message={message} />
           </TableCell>
         </TableRow>
       </TableBody>

@@ -15,7 +15,7 @@ const createCellRenderers = (bill: Bill) => ({
   billType: () => bill.billType,
   status: () => <BillStatusChip status={bill.status} />,
   sponsors: () => <BillSponsors sponsors={bill.sponsors} />,
-  actions: () => <FavoriteButton billNo={bill.billNo} billYear={bill.billYear} />,
+  actions: () => <FavoriteButton bill={bill} />,
 });
 
 type BillTableRowProps = {

@@ -3,31 +3,31 @@ import { Favorite, FavoriteBorder } from '@mui/icons-material';
 import { memo } from 'react';
 
 import { useFavoritesStore } from '@/features/bills/stores/favoritesStore';
+import type { Bill } from '@/types';
 
 type FavoriteButtonProps = {
-  billNo: string;
-  billYear: string;
+  bill: Bill;
 };
 
-const FavoriteButton = memo(({ billNo, billYear }: FavoriteButtonProps) => {
+const FavoriteButton = memo(({ bill }: FavoriteButtonProps) => {
   const theme = useTheme();
-  const uniqueId = `${billNo}-${billYear}`;
-  const isFavorite = useFavoritesStore((state) => state.favorites.includes(uniqueId));
+  const billId = `${bill.billNo}-${bill.billYear}`;
+  const isFavorite = useFavoritesStore((state) => state.isFavorite(billId));
   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
 
   return (
     <IconButton
-      aria-label={`Favourite bill ${billNo}`}
-      title={`Favourite bill ${billNo}`}
+      aria-label={`Favourite bill ${bill.billNo}`}
+      title={`Favourite bill ${bill.billNo}`}
       size="small"
       sx={{
         color: isFavorite ? theme.palette.warning.main : theme.palette.text.secondary,
       }}
       onClick={(e) => {
         e.stopPropagation(); // prevent the click from bubbling up to the table row
-        toggleFavorite(uniqueId);
+        toggleFavorite(bill);
         console.log(
-          `Request to ${isFavorite ? 'unfavourite' : 'favourite'} a bill ${billNo} (${billYear}) was dispatched to the server`
+          `Request to ${isFavorite ? 'unfavourite' : 'favourite'} a bill ${bill.billNo} (${bill.billYear}) was dispatched to the server`
         );
       }}
     >
