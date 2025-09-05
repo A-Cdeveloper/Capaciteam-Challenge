@@ -61,7 +61,7 @@ const AllBills = memo(() => {
           count={allCount}
           rowsPerPage={pageSize}
           page={page - 1}
-          onPageChange={(event, newPage) => handleChangePage(event, newPage + 1)}
+          onPageChange={(event, newPage) => handleChangePage(event!, newPage + 1)}
           onRowsPerPageChange={handleChangePageSize}
           sx={{
             '& .MuiTablePagination-select': {

@@ -1,4 +1,5 @@
 import { useQueryState, parseAsInteger } from 'nuqs';
+import { useCallback } from 'react';
 
 type UsePaginationProps = {
   pageSize: number;
@@ -7,7 +8,7 @@ type UsePaginationProps = {
 type UsePaginationResponse = {
   page: number;
   pageSize: number;
-  handleChangePage: (event: unknown, newPage: number) => void;
+  handleChangePage: (event: React.SyntheticEvent, newPage: number) => void;
   handleChangePageSize: (event: React.ChangeEvent<HTMLInputElement>) => void;
   setPage: (page: number) => void;
 };
@@ -28,15 +29,21 @@ export const usePagination = ({
     parseAsInteger.withDefault(initialPageSize)
   );
 
-  const handleChangePage = (_event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
+  const handleChangePage = useCallback(
+    (_: React.SyntheticEvent, newPage: number) => {
+      setPage(newPage);
+    },
+    [setPage]
+  );
 
-  const handleChangePageSize = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newPageSize = parseInt(event.target.value, 10);
-    setPageSize(newPageSize);
-    setPage(1); // Reset to first page when changing page size
-  };
+  const handleChangePageSize = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const newPageSize = parseInt(event.target.value, 10);
+      setPageSize(newPageSize);
+      setPage(1); // Reset to first page when changing page size
+    },
+    [setPageSize, setPage]
+  );
 
   return {
     page,
