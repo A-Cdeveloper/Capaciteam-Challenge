@@ -1,0 +1,40 @@
+import { Table, TableContainer } from '@mui/material';
+import { useMemo, memo } from 'react';
+
+import { useFavoritesStore } from '@/features/bills/stores/favoritesStore';
+import { useQueryState } from 'nuqs';
+import { BillsTableBody, BillsTableHeader } from './table';
+import BillsContainer from './BillsContainer';
+
+const FavoritesBills = memo(() => {
+  const { favorites } = useFavoritesStore();
+  const [billStatus] = useQueryState('bill_status');
+
+  // Filter favorites by status
+  const { filteredBills } = useMemo(() => {
+    const favoritesArray = Object.values(favorites);
+    const filteredFavorites =
+      billStatus === 'All' || !billStatus
+        ? favoritesArray
+        : favoritesArray.filter((bill) => bill.status === billStatus);
+
+    return {
+      filteredBills: filteredFavorites,
+    };
+  }, [favorites, billStatus]);
+
+  const countText = `<span style={{ fontWeight: 500 }}>${filteredBills.length}</span> favorite bills`;
+
+  return (
+    <BillsContainer countText={countText}>
+      <TableContainer>
+        <Table size="medium">
+          <BillsTableHeader />
+          <BillsTableBody bills={filteredBills} activeTab="favorites" />
+        </Table>
+      </TableContainer>
+    </BillsContainer>
+  );
+});
+
+export default FavoritesBills;
