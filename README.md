@@ -1,6 +1,6 @@
 # Capaciteam Challenge
 
-A modern React application for browsing and managing Irish legislation bills with advanced filtering, pagination, favorites functionality, and interactive modal details with bilingual support.
+A React application for browsing and managing legislation bills with advanced filtering, pagination, favorites functionality, and interactive modal details with bilingual support.
 
 ## Features
 
@@ -13,6 +13,8 @@ A modern React application for browsing and managing Irish legislation bills wit
 - **Type Safety**: Full TypeScript implementation
 - **Component Architecture**: Modular design with AllBills/FavoritesBills separation
 - **Generic Components**: Reusable TabSwitcher and BillsContainer components
+- **Comprehensive Testing**: Unit tests for UI components and custom hooks
+- **Performance Optimization**: Code splitting, lazy loading, and bundle optimization
 
 ## Technologies
 
@@ -23,6 +25,7 @@ A modern React application for browsing and managing Irish legislation bills wit
 - **Zustand** - Client state management for favorites
 - **nuqs** - Type-safe URL state management
 - **Portal API** - Modal rendering outside component tree
+- **Vitest** - Modern testing framework with React Testing Library
 - **ESLint + Prettier** - Code quality and formatting
 
 ## Project Structure
@@ -53,7 +56,12 @@ src/
 │   ├── mui/            # MUI theme provider
 │   └── react-query/    # React Query provider
 ├── types/              # TypeScript type definitions
-└── config/             # Constants and configuration
+├── config/             # Constants and configuration
+└── __tests__/          # Test files
+    ├── features/       # Feature-specific tests
+    ├── components/     # Component tests
+    ├── utils/          # Test utilities (QueryTestWrapper)
+    └── __mocks__/      # Mock data and API responses
 ```
 
 ## Getting Started
@@ -67,10 +75,29 @@ src/
 
 1.  Clone the repository
 2.  Install dependencies:
-3.  Set up environment variables:  
-    Create a `.env` file in the root directory:
-4.  Run the development server:
-5.  Open your browser and navigate to `http://localhost:5173`
+
+```
+npm install
+# or
+yarn install
+```
+
+1.  Set up environment variables:  
+    Create a `.env` file in the root directory and add:
+
+```
+VITE_API_BASE_URL=https://api.oireachtas.ie/v1
+```
+
+1.  Run the development server:
+
+```
+npm run dev
+# or
+yarn dev
+```
+
+1.  Open your browser and navigate to `http://localhost:5173`
 
 ## Development
 
@@ -80,6 +107,33 @@ src/
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
+- `npm test` - Run tests in watch mode
+- `npm run test:run` - Run tests once
+- `npm run test:ui` - Open Vitest UI
+
+## Testing
+
+The project includes comprehensive unit testing with Vitest and React Testing Library:
+
+### Test Structure
+
+```
+src/__tests__/
+├── features/bills/
+│   ├── components/table/     # BillTableRow, BillSponsors, FavoriteButton tests
+│   └── hooks/               # useBills hook tests
+├── components/ui/tabs/      # Tabs component tests
+├── utils/                   # QueryTestWrapper for React Query
+└── __mocks__/              # Mock data and API responses
+```
+
+### Running Tests
+
+```
+npm test          # Run tests in watch mode
+npm run test:run  # Run tests once
+npm run test:ui   # Open Vitest UI
+```
 
 ## API Integration
 
@@ -89,31 +143,26 @@ The app integrates with the Oireachtas API:
 - **Parameters**: `skip`, `limit`, `bill_status`
 - **Response**: Paginated list of legislation bills
 
+## Performance Optimizations
+
+- **Code Splitting**: Lazy loading for AllBills and FavoritesBills components
+- **Bundle Optimization**: Manual chunks for vendor libraries
+- **Tree Shaking**: Individual Material UI imports
+- **Memoization**: React.memo() for preventing unnecessary re-renders
+- **Query Caching**: React Query for efficient API data management
+
 ## Deployment
 
 1.  Build the project:
-2.  Deploy the `dist` folder to your hosting service
+
+```
+npm run build
+# or
+yarn build
+```
+
+1.  Deploy the `dist` folder to your hosting service
 
 ## License
 
 MIT License - see LICENSE file for details
-
-```
-npm run build
-```
-
-```
-npm run dev
-# or
-yarn dev
-```
-
-```
-VITE_API_BASE_URL=https://api.oireachtas.ie/v1
-```
-
-```
-npm install
-# or
-yarn install
-```
