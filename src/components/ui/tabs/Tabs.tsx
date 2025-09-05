@@ -3,12 +3,12 @@ import { memo } from 'react';
 
 export type TabItem = {
   label: string;
-  value: number;
+  value: number | string;
 };
 
 type TabsProps = {
-  value: number;
-  onChange: (event: React.SyntheticEvent, newValue: number) => void;
+  value: number | string;
+  onChange: (event: React.SyntheticEvent, newValue: number | string) => void;
   tabs: TabItem[];
   ariaLabel?: string;
 };
