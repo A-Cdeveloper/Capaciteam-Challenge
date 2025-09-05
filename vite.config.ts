@@ -9,4 +9,24 @@ export default defineConfig({
       '@': '/src',
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // React ecosystem
+          'react-vendor': ['react', 'react-dom'],
+
+          // Material UI
+          'mui-vendor': ['@mui/material', '@mui/icons-material', '@mui/material/styles'],
+
+          // State management and utilities
+          'utils-vendor': ['zustand', 'nuqs', '@tanstack/react-query'],
+        },
+      },
+    },
+    // Optimize bundle size
+    minify: 'esbuild',
+    // Increase chunk size warning limit
+    chunkSizeWarningLimit: 1000,
+  },
 });
