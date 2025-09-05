@@ -6,6 +6,13 @@ type BillsContainerProps = {
   countText?: string;
 };
 
+/**
+ * Shared container component for bills display with optional count text
+ * Provides consistent styling and layout for bills tables
+ * @param children - React nodes to render inside the container
+ * @param countText - Optional text to display in the top-right corner
+ * @returns JSX element containing styled container with children
+ */
 const BillsContainer = memo(({ children, countText }: BillsContainerProps) => {
   return (
     <Box sx={{ position: 'relative' }}>

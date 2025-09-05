@@ -12,6 +12,13 @@ type UsePaginationResponse = {
   setPage: (page: number) => void;
 };
 
+/**
+ * Custom hook for managing pagination state with URL synchronization
+ * @param pageSize - Initial page size (number of items per page)
+ * @returns Pagination state and handlers for page changes
+ * @example
+ * const { page, pageSize, handleChangePage } = usePagination({ pageSize: 10 });
+ */
 export const usePagination = ({
   pageSize: initialPageSize,
 }: UsePaginationProps): UsePaginationResponse => {

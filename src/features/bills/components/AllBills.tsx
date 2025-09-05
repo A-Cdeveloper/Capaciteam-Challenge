@@ -10,6 +10,11 @@ import { useQueryState } from 'nuqs';
 import { BillsTableBody, BillsTableHeader } from './table';
 import BillsContainer from './BillsContainer';
 
+/**
+ * Component for displaying all bills with pagination and filtering
+ * Fetches bills from API and displays them in a table with pagination controls
+ * @returns JSX element containing bills table and pagination
+ */
 const AllBills = memo(() => {
   const { page, pageSize, handleChangePage, handleChangePageSize } = usePagination({
     pageSize: PAGE_SIZE,

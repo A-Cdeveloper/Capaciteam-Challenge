@@ -6,6 +6,11 @@ import { useQueryState } from 'nuqs';
 import { BillsTableBody, BillsTableHeader } from './table';
 import BillsContainer from './BillsContainer';
 
+/**
+ * Component for displaying favorite bills with filtering
+ * Retrieves bills from favorites store and displays them in a table
+ * @returns JSX element containing favorite bills table
+ */
 const FavoritesBills = memo(() => {
   const { favorites } = useFavoritesStore();
   const [billStatus] = useQueryState('bill_status');

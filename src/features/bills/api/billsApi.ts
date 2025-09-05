@@ -1,5 +1,15 @@
 import type { ApiBill, ApiErrorResponse, ApiSuccessResponse, BillStatus } from '@/types';
 
+/**
+ * Fetches bills data from the Oireachtas API with pagination and filtering
+ * @param page - Page number (1-based)
+ * @param limit - Number of bills per page
+ * @param billStatus - Optional bill status filter (Current, Enacted, Withdrawn, etc.)
+ * @returns Promise resolving to API response with bills data
+ * @throws {Error} When API request fails or returns error status
+ * @example
+ * const bills = await fetchBills(1, 10, 'Current');
+ */
 export const fetchBills = async (
   page: number,
   limit: number,

@@ -3,8 +3,11 @@ import { persist } from 'zustand/middleware';
 import type { Bill } from '@/types';
 
 type FavoritesStore = {
+  /** Map of favorite bills by billId (billNo-billYear) */
   favorites: Record<string, Bill>;
+  /** Toggle favorite status of a bill */
   toggleFavorite: (bill: Bill) => void;
+  /** Check if a bill is marked as favorite */
   isFavorite: (billId: string) => boolean;
 };
 
@@ -13,7 +16,10 @@ export const useFavoritesStore = create<FavoritesStore>()(
     (set, get) => ({
       favorites: {},
 
-      // toggle the favorite status of a bill
+      /**
+       * Toggle the favorite status of a bill
+       * @param bill - The bill object to toggle favorite status for
+       */
       toggleFavorite: (bill: Bill) => {
         const billId = `${bill.billNo}-${bill.billYear}`;
         set((state) => {
@@ -27,7 +33,11 @@ export const useFavoritesStore = create<FavoritesStore>()(
         });
       },
 
-      // check if a bill is favorite
+      /**
+       * Check if a bill is marked as favorite
+       * @param billId - The bill ID in format "billNo-billYear"
+       * @returns True if the bill is favorited, false otherwise
+       */
       isFavorite: (billId: string) => {
         return !!get().favorites[billId];
       },
