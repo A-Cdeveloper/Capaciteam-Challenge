@@ -24,6 +24,7 @@ const BillStatusChip = memo(({ status }: BillStatusChipProps) => {
 
   return (
     <Chip
+      data-testid="bill-status"
       label={status.toLowerCase()}
       color={color}
       size="small"

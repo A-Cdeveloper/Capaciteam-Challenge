@@ -7,15 +7,17 @@ import BillSponsors from '../table/BillSponsors';
 type BillModalContentProps = {
   bill: Bill;
   activeTab: number;
+  'data-testid'?: string;
 };
 
-const BillModalContent = memo(({ bill, activeTab }: BillModalContentProps) => {
+const BillModalContent = memo(({ bill, activeTab, ...props }: BillModalContentProps) => {
   const isEnglish = activeTab === 0;
   const title = isEnglish ? bill.shortTitleEn : bill.shortTitleGa;
   const description = isEnglish ? bill.longTitleEn : bill.longTitleGa;
 
   return (
     <Box
+      {...props}
       sx={{
         px: 3,
         py: 3,

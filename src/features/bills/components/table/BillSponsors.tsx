@@ -10,13 +10,13 @@ const getDisplaySponsor = (sponsor: Sponsor): string => {
 };
 
 const BillSponsors = ({ sponsors }: { sponsors: Sponsor[] }) => {
-  if (!sponsors || sponsors.length === 0) return <>N/A</>;
+  if (!sponsors || sponsors.length === 0) return <span data-testid="bill-sponsors">N/A</span>;
 
   // Use primary sponsor if available | fall back to first sponsor
   const primarySponsor = sponsors.find((s) => s.sponsor.isPrimary);
   const sponsorToUse = primarySponsor || sponsors[0];
 
-  return <>{getDisplaySponsor(sponsorToUse)}</>;
+  return <span data-testid="bill-sponsors">{getDisplaySponsor(sponsorToUse)}</span>;
 };
 
 export default BillSponsors;

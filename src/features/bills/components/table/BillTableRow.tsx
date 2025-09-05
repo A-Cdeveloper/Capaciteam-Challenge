@@ -13,8 +13,8 @@ import { BillModal } from '../modal';
 
 // create cell renderers for the bill table
 const createCellRenderers = (bill: Bill) => ({
-  billNo: () => bill.billNo,
-  billType: () => bill.billType,
+  billNo: () => <span data-testid="bill-number">{bill.billNo}</span>,
+  billType: () => <span data-testid="bill-type">{bill.billType}</span>,
   status: () => <BillStatusChip status={bill.status} />,
   sponsors: () => <BillSponsors sponsors={bill.sponsors} />,
   actions: () => <FavoriteButton bill={bill} />,

@@ -20,6 +20,7 @@ const FavoriteButton = memo(({ bill }: FavoriteButtonProps) => {
     <IconButton
       aria-label={`Favourite bill ${bill.billNo}`}
       title={`Favourite bill ${bill.billNo}`}
+      data-testid="favorite-button"
       size="small"
       sx={{
         color: isFavorite ? theme.palette.warning.main : theme.palette.text.secondary,

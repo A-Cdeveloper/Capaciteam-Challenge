@@ -33,7 +33,7 @@ export default defineConfig({
   // DODAJ OVO:
   test: {
     environment: 'jsdom',
-    setupFiles: ['./src/test/setup.ts'],
+    setupFiles: ['./src/__tests__/setupTests.ts'],
     globals: true,
   },
 });

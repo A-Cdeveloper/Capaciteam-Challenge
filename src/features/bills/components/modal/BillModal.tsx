@@ -46,6 +46,7 @@ const BillModalRoot = ({ open, onClose, bill, children }: BillModalProps) => {
   return (
     <BillModalContext value={contextValue}>
       <Dialog
+        data-testid="bill-modal"
         open={open}
         onClose={onClose}
         maxWidth="lg"
@@ -69,6 +70,7 @@ const BillModalRoot = ({ open, onClose, bill, children }: BillModalProps) => {
 const Header = ({ children }: { children: React.ReactNode }) => {
   return (
     <DialogTitle
+      data-testid="bill-modal-header"
       sx={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -87,6 +89,7 @@ const Close = () => {
 
   return (
     <IconButton
+      data-testid="bill-modal-close"
       aria-label="close"
       onClick={onClose}
       size="small"
@@ -104,13 +107,15 @@ const Close = () => {
 
 const Tabs = () => {
   const { activeTab, setActiveTab } = useBillModalContext();
-  return <BillModalTabs activeTab={activeTab} onTabChange={setActiveTab} />;
+  return (
+    <BillModalTabs data-testid="bill-modal-tabs" activeTab={activeTab} onTabChange={setActiveTab} />
+  );
 };
 
 const Content = () => {
   const { bill, activeTab } = useBillModalContext();
   if (!bill) return null;
-  return <BillModalContent bill={bill} activeTab={activeTab} />;
+  return <BillModalContent data-testid="bill-modal-content" bill={bill} activeTab={activeTab} />;
 };
 
 //

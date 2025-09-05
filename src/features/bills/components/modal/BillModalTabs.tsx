@@ -5,11 +5,12 @@ import TabSwitcher from '@/components/ui/tabs/TabSwitcher';
 type BillModalTabsProps = {
   activeTab: number;
   onTabChange: (newValue: number) => void;
+  'data-testid'?: string;
 };
 
-const BillModalTabs = memo(({ activeTab, onTabChange }: BillModalTabsProps) => {
+const BillModalTabs = memo(({ activeTab, onTabChange, ...props }: BillModalTabsProps) => {
   return (
-    <Box sx={{ mb: 3 }}>
+    <Box sx={{ mb: 3 }} {...props}>
       <TabSwitcher
         activeTab={activeTab}
         onTabChange={onTabChange}
