@@ -1,9 +1,13 @@
-import AllBills from '@/features/bills/components/AllBills';
-import FavoritesBills from '@/features/bills/components/FavoritesBills';
 import BillStatusFilter from '@/features/bills/components/filters/BillStatusFilter';
 import { useBillsTabs } from '@/features/bills/hooks/useBillsTabs';
 import { TabSwitcher } from '@/components/ui';
 import Box from '@mui/material/Box';
+import { lazy, Suspense } from 'react';
+import { Loading } from '@/components/ui';
+
+// Lazy load heavy components for better performance
+const AllBills = lazy(() => import('@/features/bills/components/AllBills'));
+const FavoritesBills = lazy(() => import('@/features/bills/components/FavoritesBills'));
 
 const BillsPage = () => {
   const { activeTab, setActiveTab } = useBillsTabs();
@@ -24,7 +28,9 @@ const BillsPage = () => {
       <Box sx={{ mb: 2, position: 'relative' }}>
         <BillStatusFilter />
       </Box>
-      {activeTab === 'all' ? <AllBills /> : <FavoritesBills />}
+      <Suspense fallback={<Loading />}>
+        {activeTab === 'all' ? <AllBills /> : <FavoritesBills />}
+      </Suspense>
     </Box>
   );
 };
