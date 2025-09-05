@@ -1,4 +1,6 @@
-import { TableCell, TableRow, Typography } from '@mui/material';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
 import { memo, useState } from 'react';
 import { createPortal } from 'react-dom';
 

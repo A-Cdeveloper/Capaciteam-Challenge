@@ -1,4 +1,7 @@
-import { CircularProgress, Container, Stack, Typography } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
+import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 export const Loading = () => {
   return (

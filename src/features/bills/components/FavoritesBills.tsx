@@ -1,4 +1,5 @@
-import { Table, TableContainer } from '@mui/material';
+import Table from '@mui/material/Table';
+import TableContainer from '@mui/material/TableContainer';
 import { useMemo, memo } from 'react';
 
 import { useFavoritesStore } from '@/features/bills/stores/favoritesStore';

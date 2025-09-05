@@ -1,4 +1,6 @@
-import { Box, Tabs as MuiTabs, Tab } from '@mui/material';
+import Box from '@mui/material/Box';
+import MuiTabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import { memo } from 'react';
 
 export type TabItem = {

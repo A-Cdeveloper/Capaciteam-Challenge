@@ -1,6 +1,9 @@
 import type { Bill } from '@/types';
 import { Close as CloseIcon } from '@mui/icons-material';
-import { Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import IconButton from '@mui/material/IconButton';
 import { createContext, use, useState } from 'react';
 import BillModalContent from './BillModalContent';
 import BillModalTabs from './BillModalTabs';

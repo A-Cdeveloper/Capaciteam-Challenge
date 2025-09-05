@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { memo } from 'react';
 import { TabSwitcher } from '@/components/ui';
 

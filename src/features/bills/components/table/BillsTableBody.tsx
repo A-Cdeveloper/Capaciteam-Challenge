@@ -1,6 +1,8 @@
 import { EmptyState } from '@/components/ui';
 import type { Bill } from '@/types';
-import { TableBody, TableCell, TableRow } from '@mui/material';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
 import BillTableRow from './BillTableRow';
 
 type BillsTableBodyProps = {

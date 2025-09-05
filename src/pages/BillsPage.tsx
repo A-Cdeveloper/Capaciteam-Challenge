@@ -3,7 +3,7 @@ import FavoritesBills from '@/features/bills/components/FavoritesBills';
 import BillStatusFilter from '@/features/bills/components/filters/BillStatusFilter';
 import { useBillsTabs } from '@/features/bills/hooks/useBillsTabs';
 import { TabSwitcher } from '@/components/ui';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 const BillsPage = () => {
   const { activeTab, setActiveTab } = useBillsTabs();

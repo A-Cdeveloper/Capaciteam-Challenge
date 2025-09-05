@@ -1,4 +1,6 @@
-import { Table, TableContainer, TablePagination } from '@mui/material';
+import Table from '@mui/material/Table';
+import TableContainer from '@mui/material/TableContainer';
+import TablePagination from '@mui/material/TablePagination';
 import { useMemo, memo } from 'react';
 
 import { ErrorMessage, Loading } from '@/components/ui';

@@ -1,4 +1,6 @@
-import { TableCell, TableHead, TableRow } from '@mui/material';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 import { BILLS_TABLE_COLUMNS } from '@/features/bills/constants/tableColumns';
 
 const BillsTableHeader = () => (

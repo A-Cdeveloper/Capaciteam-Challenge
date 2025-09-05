@@ -1,4 +1,4 @@
-import { Container } from '@mui/material';
+import Container from '@mui/material/Container';
 
 const MainContent = ({ children }: { children: React.ReactNode }) => {
   return (

@@ -1,4 +1,4 @@
-import { Chip } from '@mui/material';
+import Chip from '@mui/material/Chip';
 import { memo } from 'react';
 
 import type { BillStatus } from '@/types';

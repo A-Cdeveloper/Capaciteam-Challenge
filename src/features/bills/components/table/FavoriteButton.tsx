@@ -1,4 +1,5 @@
-import { IconButton, useTheme } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import { useTheme } from '@mui/material/styles';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
 import { memo } from 'react';
 

@@ -1,6 +1,6 @@
 import { Footer, Header, MainContent } from '@/components/layout';
 import BillsPage from '@/pages/BillsPage';
-import { Stack } from '@mui/material';
+import Stack from '@mui/material/Stack';
 import { NuqsAdapter } from 'nuqs/adapters/react';
 
 function App() {
