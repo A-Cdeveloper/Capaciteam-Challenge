@@ -1,19 +1,31 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
 import { memo } from 'react';
+import { useQueryState, parseAsInteger } from 'nuqs';
 import type { BillStatus } from '@/types';
 import { BILL_STATUS } from '@/types';
 
 const ALL_STATUS = 'All';
 
-type BillStatusFilterProps = {
-  value: BillStatus | typeof ALL_STATUS;
-  onChange: (value: BillStatus | typeof ALL_STATUS) => void;
-};
+const BillStatusFilter = memo(() => {
+  const [billStatus, setBillStatus] = useQueryState('bill_status');
+  const [, setPage] = useQueryState('page', parseAsInteger.withDefault(1));
 
-const BillStatusFilter = memo(({ value, onChange }: BillStatusFilterProps) => {
+  const displayValue = (billStatus || 'All') as BillStatus | 'All';
+
+  const handleStatusChange = (newStatus: BillStatus | 'All') => {
+    if (newStatus === 'All') {
+      // Remove bill_status from URL completely when "All" is selected
+      setBillStatus(null);
+    } else {
+      setBillStatus(newStatus);
+    }
+    // Reset to page 1 when changing status
+    setPage(1);
+  };
+
   const handleChange = (event: SelectChangeEvent) => {
-    onChange(event.target.value as BillStatus | typeof ALL_STATUS);
+    handleStatusChange(event.target.value as BillStatus | typeof ALL_STATUS);
   };
 
   return (
@@ -21,7 +33,7 @@ const BillStatusFilter = memo(({ value, onChange }: BillStatusFilterProps) => {
       <InputLabel id="bill-status-filter-label">Bill Status</InputLabel>
       <Select
         labelId="bill-status-filter-label"
-        value={value}
+        value={displayValue}
         label="Bill Status"
         onChange={handleChange}
       >
