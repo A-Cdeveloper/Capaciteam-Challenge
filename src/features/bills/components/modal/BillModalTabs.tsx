@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import { memo } from 'react';
-import { TabSwitcher } from '@/components/ui';
+import TabSwitcher from '@/components/ui/tabs/TabSwitcher';
 
 type BillModalTabsProps = {
   activeTab: number;

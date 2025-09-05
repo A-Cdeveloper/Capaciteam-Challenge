@@ -1,6 +1,6 @@
 import BillStatusFilter from '@/features/bills/components/filters/BillStatusFilter';
 import { useBillsTabs } from '@/features/bills/hooks/useBillsTabs';
-import { TabSwitcher } from '@/components/ui';
+import TabSwitcher from '@/components/ui/tabs/TabSwitcher';
 import Box from '@mui/material/Box';
 import { lazy, Suspense } from 'react';
 import { Loading } from '@/components/ui';

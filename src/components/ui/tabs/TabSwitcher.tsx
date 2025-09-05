@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Tabs } from '@/components/ui';
+import Tabs from './Tabs';
 
 type TabSwitcherProps<T extends number | string> = {
   activeTab: T;
