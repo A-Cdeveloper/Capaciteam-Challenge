@@ -2,6 +2,8 @@
 
 A React application for browsing and managing legislation bills with advanced filtering, pagination, favorites functionality, and interactive modal details with bilingual support.
 
+🌐 **Live Demo**: [https://capaciteam-challenge.vercel.app/](https://capaciteam-challenge.vercel.app/)
+
 ## Features
 
 - **Bill Browsing**: View legislation bills with detailed information
@@ -15,6 +17,7 @@ A React application for browsing and managing legislation bills with advanced fi
 - **Generic Components**: Reusable TabSwitcher and BillsContainer components
 - **Comprehensive Testing**: Unit tests for UI components and custom hooks
 - **Performance Optimization**: Code splitting, lazy loading, and bundle optimization
+- **CI/CD Pipeline**: Automated testing, building, and deployment with GitHub Actions
 
 ## Technologies
 
@@ -27,6 +30,8 @@ A React application for browsing and managing legislation bills with advanced fi
 - **Portal API** - Modal rendering outside component tree
 - **Vitest** - Modern testing framework with React Testing Library
 - **ESLint + Prettier** - Code quality and formatting
+- **GitHub Actions** - CI/CD pipeline automation
+- **Vercel** - Production deployment and hosting
 
 ## Project Structure
 
@@ -151,14 +156,33 @@ The app integrates with the Oireachtas API:
 - **Memoization**: React.memo() for preventing unnecessary re-renders
 - **Query Caching**: React Query for efficient API data management
 
+## CI/CD Pipeline
+
+The project includes automated CI/CD pipeline with GitHub Actions:
+
+### Workflow Steps
+
+1.  **Lint** - Code quality checks with ESLint
+2.  **Test** - Unit tests with Vitest
+3.  **Build** - Production build with Vite
+4.  **Deploy** - Automatic deployment to Vercel
+
 ## Deployment
+
+### Automatic Deployment
+
+The application is automatically deployed to Vercel via GitHub Actions when:
+
+- Code is pushed to `master` branch
+- All CI checks pass (lint, test, build)
+- Vercel auto-deploy is disabled for `master` branch
+
+### Manual Deployment
 
 1.  Build the project:
 
 ```
 npm run build
-# or
-yarn build
 ```
 
 1.  Deploy the `dist` folder to your hosting service
