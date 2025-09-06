@@ -9,6 +9,12 @@ import { Loading } from '@/components/ui';
 const AllBills = lazy(() => import('@/features/bills/components/AllBills'));
 const FavoritesBills = lazy(() => import('@/features/bills/components/FavoritesBills'));
 
+// Tabs configuration - constant reference for better performance
+const TABS = [
+  { label: 'All Bills', value: 'all' as const },
+  { label: 'Favorites', value: 'favorites' as const },
+] as { label: string; value: 'all' | 'favorites' }[];
+
 const BillsPage = () => {
   const { activeTab, setActiveTab } = useBillsTabs();
 
@@ -18,10 +24,7 @@ const BillsPage = () => {
         <TabSwitcher
           activeTab={activeTab}
           onTabChange={setActiveTab}
-          tabs={[
-            { label: 'All Bills', value: 'all' },
-            { label: 'Favorites', value: 'favorites' },
-          ]}
+          tabs={TABS}
           ariaLabel="bills table tabs"
         />
       </Box>
