@@ -7,7 +7,7 @@ const BUTTON_SX = {
   minWidth: 28,
   height: 28,
   fontSize: '0.85rem',
-  px: 0.5,
+  px: { xs: 0.25, md: 0.5 },
 };
 
 type PaginationProps = {
@@ -49,92 +49,137 @@ export const Pagination = ({
   const pageNumbers = getPageNumbers(currentPage, totalPages, 5);
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-      <TablePagination
-        component="div"
-        count={count}
-        page={page}
-        onPageChange={onPageChange}
-        rowsPerPage={rowsPerPage}
-        onRowsPerPageChange={onRowsPerPageChange}
-        rowsPerPageOptions={rowsPerPageOptions}
-        ActionsComponent={() => null} // remove default actions
+    <Box>
+      {/* Mobile: Rows per page in top row */}
+      <Box sx={{ display: { xs: 'block', md: 'none' }, mb: 1 }}>
+        <TablePagination
+          component="div"
+          count={count}
+          page={page}
+          onPageChange={onPageChange}
+          rowsPerPage={rowsPerPage}
+          onRowsPerPageChange={onRowsPerPageChange}
+          rowsPerPageOptions={rowsPerPageOptions}
+          sx={{
+            '& .MuiTablePagination-toolbar': {
+              paddingLeft: 0,
+              paddingRight: 0,
+            },
+            '& .MuiTablePagination-selectLabel': {
+              fontSize: '0.85rem',
+            },
+            '& .MuiTablePagination-select': {
+              fontSize: '0.85rem',
+              padding: '4px 8px',
+            },
+            '& .MuiTablePagination-displayedRows': {
+              fontSize: '0.85rem',
+            },
+            '& .MuiMenuItem-root': {
+              fontSize: '0.85rem',
+            },
+          }}
+        />
+      </Box>
+
+      {/* Desktop: Everything in one row */}
+      <Box
         sx={{
-          flexGrow: 1,
-          '& .MuiTablePagination-selectLabel': {
-            fontSize: '0.85rem',
-          },
-          '& .MuiTablePagination-select': {
-            fontSize: '0.85rem',
-          },
-          '& .MuiTablePagination-displayedRows': {
-            fontSize: '0.85rem',
-          },
+          display: { xs: 'none', md: 'flex' },
+          alignItems: 'center',
+          justifyContent: 'space-between',
         }}
-      />
+      >
+        <TablePagination
+          component="div"
+          count={count}
+          page={page}
+          onPageChange={onPageChange}
+          rowsPerPage={rowsPerPage}
+          onRowsPerPageChange={onRowsPerPageChange}
+          rowsPerPageOptions={rowsPerPageOptions}
+          ActionsComponent={() => null} // remove default actions
+          sx={{
+            flexGrow: 1,
+            '& .MuiTablePagination-selectLabel': {
+              fontSize: '0.85rem',
+            },
+            '& .MuiTablePagination-select': {
+              fontSize: '0.85rem',
+              padding: '4px 2px',
+            },
+            '& .MuiTablePagination-displayedRows': {
+              fontSize: '0.85rem',
+            },
+            '& .MuiMenuItem-root': {
+              fontSize: '0.85rem',
+            },
+          }}
+        />
 
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0 }}>
-        <IconButton
-          onClick={handleFirstPage}
-          disabled={page === 0}
-          aria-label="first page"
-          sx={BUTTON_SX}
-        >
-          <FirstPage fontSize="small" />
-        </IconButton>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0.5, md: 0 } }}>
+          <IconButton
+            onClick={handleFirstPage}
+            disabled={page === 0}
+            aria-label="first page"
+            sx={BUTTON_SX}
+          >
+            <FirstPage fontSize="small" />
+          </IconButton>
 
-        <IconButton
-          onClick={handlePreviousPage}
-          disabled={page === 0}
-          aria-label="previous page"
-          sx={BUTTON_SX}
-        >
-          <KeyboardArrowLeft fontSize="small" />
-        </IconButton>
+          <IconButton
+            onClick={handlePreviousPage}
+            disabled={page === 0}
+            aria-label="previous page"
+            sx={BUTTON_SX}
+          >
+            <KeyboardArrowLeft fontSize="small" />
+          </IconButton>
 
-        {/* Page Numbers */}
-        <Box sx={{ display: 'flex', gap: 0, mx: 0 }}>
-          {pageNumbers.map((pageNum, index) => (
-            <IconButton
-              key={index}
-              onClick={() =>
-                typeof pageNum === 'number' ? onPageChange(null, pageNum - 1) : undefined
-              }
-              disabled={pageNum === '...'}
-              sx={{
-                minWidth: pageNum === '...' ? 20 : 28,
-                height: 28,
-                fontSize: pageNum === '...' ? '0.7rem' : '0.85rem',
-                borderRadius: '0px',
-                backgroundColor: pageNum === currentPage ? 'divider' : 'transparent',
-                color: pageNum === '...' ? 'text.secondary' : 'text.primary',
-                '&:hover': {
-                  backgroundColor: pageNum === currentPage ? 'divider' : 'divider',
-                },
-              }}
-            >
-              {pageNum}
-            </IconButton>
-          ))}
+          {/* Page Numbers */}
+          <Box sx={{ display: 'flex', gap: { xs: 0, md: 0 }, mx: 0 }}>
+            {pageNumbers.map((pageNum, index) => (
+              <IconButton
+                key={index}
+                onClick={() =>
+                  typeof pageNum === 'number' ? onPageChange(null, pageNum - 1) : undefined
+                }
+                disabled={pageNum === '...'}
+                sx={{
+                  minWidth: pageNum === '...' ? 20 : 28,
+                  height: 28,
+                  fontSize: pageNum === '...' ? '0.7rem' : '0.85rem',
+                  borderRadius: '0px',
+                  backgroundColor: pageNum === currentPage ? 'divider' : 'transparent',
+                  color: pageNum === '...' ? 'text.secondary' : 'text.primary',
+                  '&:hover': {
+                    backgroundColor: pageNum === currentPage ? 'divider' : 'divider',
+                  },
+                }}
+              >
+                {pageNum}
+              </IconButton>
+            ))}
+          </Box>
+
+          <IconButton
+            onClick={handleNextPage}
+            disabled={page >= totalPages - 1}
+            aria-label="next page"
+            sx={BUTTON_SX}
+          >
+            <KeyboardArrowRight fontSize="small" />
+          </IconButton>
+
+          <IconButton
+            onClick={handleLastPage}
+            disabled={page >= totalPages - 1}
+            aria-label="last page"
+            sx={BUTTON_SX}
+          >
+            <LastPage fontSize="small" />
+          </IconButton>
         </Box>
-
-        <IconButton
-          onClick={handleNextPage}
-          disabled={page >= totalPages - 1}
-          aria-label="next page"
-          sx={BUTTON_SX}
-        >
-          <KeyboardArrowRight fontSize="small" />
-        </IconButton>
-
-        <IconButton
-          onClick={handleLastPage}
-          disabled={page >= totalPages - 1}
-          aria-label="last page"
-          sx={BUTTON_SX}
-        >
-          <LastPage fontSize="small" />
-        </IconButton>
       </Box>
     </Box>
   );
