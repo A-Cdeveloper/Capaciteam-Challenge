@@ -1,9 +1,8 @@
 import Table from '@mui/material/Table';
 import TableContainer from '@mui/material/TableContainer';
-import TablePagination from '@mui/material/TablePagination';
 import { useMemo, memo } from 'react';
 
-import { ErrorMessage, Loading } from '@/components/ui';
+import { ErrorMessage, Loading, Pagination } from '@/components/ui';
 import { PAGE_SIZE } from '@/config/constants';
 import { useBills } from '@/features/bills/hooks/useBills';
 import { usePagination } from '@/features/bills/hooks/usePagination';
@@ -11,6 +10,7 @@ import type { BillStatus } from '@/types';
 import { useQueryState } from 'nuqs';
 import { BillsTableBody, BillsTableHeader } from './table';
 import BillsContainer from './BillsContainer';
+import Box from '@mui/material/Box';
 
 /**
  * Component for displaying all bills with pagination and filtering
@@ -45,38 +45,32 @@ const AllBills = memo(() => {
   const countText = `Showing <span style={{ fontWeight: 500 }}>${filteredBills.length}</span> of <span style={{ fontWeight: 500 }}>${allCount}</span> bills`;
 
   return (
-    <BillsContainer countText={countText}>
-      <TableContainer>
-        <Table size="medium">
-          <BillsTableHeader />
-          <BillsTableBody bills={filteredBills} activeTab="all" />
-        </Table>
-      </TableContainer>
+    <>
+      <BillsContainer countText={countText}>
+        <TableContainer>
+          <Table size="medium">
+            <BillsTableHeader />
+            <BillsTableBody bills={filteredBills} activeTab="all" />
+          </Table>
+        </TableContainer>
+      </BillsContainer>
 
       {/* Pagination - only for all tab */}
       {allCount > pageSize && (
-        <TablePagination
-          rowsPerPageOptions={[10, 20, 50, 100]}
-          component="div"
-          count={allCount}
-          rowsPerPage={pageSize}
-          page={page - 1}
-          onPageChange={(event, newPage) => handleChangePage(event!, newPage + 1)}
-          onRowsPerPageChange={handleChangePageSize}
-          sx={{
-            '& .MuiTablePagination-select': {
-              fontSize: '0.875rem',
-            },
-            '& .MuiTablePagination-selectLabel': {
-              fontSize: '0.875rem',
-            },
-            '& .MuiTablePagination-displayedRows': {
-              fontSize: '0.875rem',
-            },
-          }}
-        />
+        <Box sx={{ marginY: 2 }}>
+          <Pagination
+            count={allCount}
+            page={page - 1}
+            onPageChange={(event, newPage) =>
+              handleChangePage(event as React.SyntheticEvent, newPage + 1)
+            }
+            rowsPerPage={pageSize}
+            onRowsPerPageChange={handleChangePageSize}
+            rowsPerPageOptions={[10, 20, 50, 100]}
+          />
+        </Box>
       )}
-    </BillsContainer>
+    </>
   );
 });
 
