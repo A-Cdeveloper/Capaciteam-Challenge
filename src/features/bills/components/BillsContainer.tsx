@@ -23,9 +23,12 @@ const BillsContainer = memo(({ children, countText }: BillsContainerProps) => {
           variant="body2"
           color="text.secondary"
           sx={{
-            position: 'absolute',
-            top: -32,
-            right: 0,
+            position: { sm: 'relative', md: 'absolute' },
+            top: { sm: 0, md: -55 },
+            right: { sm: 'auto', md: 0 },
+            mb: { sm: 1, md: 0 },
+            textAlign: 'right',
+            fontSize: '0.9rem',
           }}
           dangerouslySetInnerHTML={{ __html: countText }}
         />
