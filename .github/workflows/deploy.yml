@@ -76,20 +76,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     steps:
-<<<<<<< HEAD
       - name: Get code
         uses: actions/checkout@v4
 
-=======
->>>>>>> 3ad32cd (ci: add GitHub Actions workflow with Vercel deployment)
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.ORG_ID }}
           vercel-project-id: ${{ secrets.PROJECT_ID }}
-          vercel-args: '--prod'
-<<<<<<< HEAD
           working-directory: '.'
-=======
->>>>>>> 3ad32cd (ci: add GitHub Actions workflow with Vercel deployment)
