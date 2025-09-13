@@ -6,7 +6,7 @@ import { AppTable } from '@/components/ui/table';
 import { PAGE_SIZE } from '@/config/constants';
 import { createBillTableColumns } from '@/features/bills/utils/tableColumns';
 import { useBills } from '@/features/bills/hooks/useBills';
-import { usePagination } from '@/features/bills/hooks/usePagination';
+import { usePagination } from '@/hooks/usePagination';
 import type { BillStatus } from '@/types';
 import Box from '@mui/material/Box';
 import BillsContainer from './BillsContainer';
