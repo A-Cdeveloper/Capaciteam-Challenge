@@ -1,4 +1,5 @@
 import type { ApiBill, ApiErrorResponse, ApiSuccessResponse, BillStatus } from '@/types';
+import { parseAsInteger, parseAsString } from 'nuqs';
 
 /**
  * Fetches bills data from the Oireachtas API with pagination and filtering
@@ -17,16 +18,15 @@ export const fetchBills = async (
 ): Promise<ApiSuccessResponse<ApiBill>> => {
   try {
     const skip = (page - 1) * limit;
-    const params = new URLSearchParams();
 
-    params.set('skip', skip.toString());
-    params.set('limit', limit.toString());
+    // Direktno kreiraj query string sa nuqs parserima
+    const queryParams = [
+      `skip=${parseAsInteger.serialize(skip)}`,
+      `limit=${parseAsInteger.serialize(limit)}`,
+      ...(billStatus ? [`bill_status=${parseAsString.serialize(billStatus)}`] : []),
+    ].join('&');
 
-    if (billStatus) {
-      params.set('bill_status', billStatus);
-    }
-
-    const url = `${import.meta.env.VITE_API_BASE_URL}/legislation?${params.toString()}`;
+    const url = `${import.meta.env.VITE_API_BASE_URL}/legislation?${queryParams}`;
     const response = await fetch(url);
 
     if (!response.ok) {
