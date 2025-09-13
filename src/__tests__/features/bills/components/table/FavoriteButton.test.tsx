@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import FavoriteButton from '@/features/bills/components/table/FavoriteButton';
+import FavoriteButton from '@/features/bills/components/bill-data/FavoriteButton';
 import type { Bill } from '@/types';
 import { mockBillsApiResponse } from '@/__tests__/__mocks__/mock-bills-api-response';
 

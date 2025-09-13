@@ -1,22 +1,17 @@
-import Table from '@mui/material/Table';
-import TableContainer from '@mui/material/TableContainer';
-import { useMemo, memo } from 'react';
+import { useQueryState } from 'nuqs';
+import { memo, useMemo } from 'react';
 
 import { ErrorMessage, Loading, Pagination } from '@/components/ui';
+import { AppTable } from '@/components/ui/table';
 import { PAGE_SIZE } from '@/config/constants';
+import { createBillTableColumns } from '@/features/bills/utils/tableColumns';
 import { useBills } from '@/features/bills/hooks/useBills';
 import { usePagination } from '@/features/bills/hooks/usePagination';
 import type { BillStatus } from '@/types';
-import { useQueryState } from 'nuqs';
-import { BillsTableBody, BillsTableHeader } from './table';
-import BillsContainer from './BillsContainer';
 import Box from '@mui/material/Box';
+import BillsContainer from './BillsContainer';
+import BillModal from './bill-data/BillModal';
 
-/**
- * Component for displaying all bills with pagination and filtering
- * Fetches bills from API and displays them in a table with pagination controls
- * @returns JSX element containing bills table and pagination
- */
 const AllBills = memo(() => {
   const { page, pageSize, handleChangePage, handleChangePageSize } = usePagination({
     pageSize: PAGE_SIZE,
@@ -47,12 +42,18 @@ const AllBills = memo(() => {
   return (
     <>
       <BillsContainer countText={countText}>
-        <TableContainer>
-          <Table size="medium">
-            <BillsTableHeader />
-            <BillsTableBody bills={filteredBills} activeTab="all" />
-          </Table>
-        </TableContainer>
+        <AppTable
+          data={filteredBills}
+          columns={createBillTableColumns()}
+          modalComponent={(bill, isOpen, onClose) => (
+            <BillModal bill={bill} isOpen={isOpen} onClose={onClose} />
+          )}
+          size="medium"
+          emptyState={{
+            title: 'No bills found',
+            message: 'There are no bills to display.',
+          }}
+        />
       </BillsContainer>
 
       {/* Pagination - only for all tab */}

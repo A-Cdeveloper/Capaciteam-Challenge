@@ -1,11 +1,11 @@
-import Table from '@mui/material/Table';
-import TableContainer from '@mui/material/TableContainer';
 import { useMemo, memo } from 'react';
-
-import { useFavoritesStore } from '@/features/bills/stores/favoritesStore';
 import { useQueryState } from 'nuqs';
-import { BillsTableBody, BillsTableHeader } from './table';
+
+import { AppTable } from '@/components/ui/table';
+import { useFavoritesStore } from '@/features/bills/stores/favoritesStore';
+import { createBillTableColumns } from '@/features/bills/utils/tableColumns';
 import BillsContainer from './BillsContainer';
+import BillModal from './bill-data/BillModal';
 
 /**
  * Component for displaying favorite bills with filtering
@@ -33,12 +33,19 @@ const FavoritesBills = memo(() => {
 
   return (
     <BillsContainer countText={countText}>
-      <TableContainer>
-        <Table size="medium">
-          <BillsTableHeader />
-          <BillsTableBody bills={filteredBills} activeTab="favorites" />
-        </Table>
-      </TableContainer>
+      <AppTable
+        data={filteredBills}
+        columns={createBillTableColumns()}
+        modalComponent={(bill, isOpen, onClose) => (
+          <BillModal bill={bill} isOpen={isOpen} onClose={onClose} />
+        )}
+        size="medium"
+        emptyState={{
+          title: 'No favorites yet',
+          message:
+            "You haven't added any bills to your favorites yet. Click the heart icon on any bill to add it to your favorites.",
+        }}
+      />
     </BillsContainer>
   );
 });

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import BillSponsors from '@/features/bills/components/table/BillSponsors';
+import BillSponsors from '@/features/bills/components/bill-data/BillSponsors';
 import type { Sponsor } from '@/types';
 import { mockBillsApiResponse } from '@/__tests__/__mocks__/mock-bills-api-response';
 

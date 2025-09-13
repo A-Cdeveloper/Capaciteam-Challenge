@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { memo } from 'react';
 import type { Bill } from '@/types';
-import BillSponsors from '../table/BillSponsors';
+import BillSponsors from './BillSponsors';
 
 type BillContentProps = {
   bill: Bill;
