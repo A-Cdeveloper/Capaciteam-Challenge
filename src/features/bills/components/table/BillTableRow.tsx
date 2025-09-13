@@ -2,14 +2,20 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import { memo, useState } from 'react';
-import { createPortal } from 'react-dom';
 
 import type { Bill } from '@/types';
 import { BILLS_TABLE_COLUMNS } from '@/features/bills/constants/tableColumns';
 import BillSponsors from './BillSponsors';
 import BillStatusChip from './BillStatus';
 import FavoriteButton from './FavoriteButton';
-import { BillModal } from '../modal';
+import { Modal } from '@/components/ui/modal/Modal';
+import BillContent from './BillContent';
+// import { BillModal } from '../modal';
+
+const TABS = [
+  { label: 'English', value: '0' },
+  { label: 'Gaeilge', value: '1' },
+] as { label: string; value: string }[];
 
 // create cell renderers for the bill table
 const createCellRenderers = (bill: Bill) => ({
@@ -38,20 +44,20 @@ const BillTableRow = memo(({ bill }: BillTableRowProps) => {
         ))}
       </TableRow>
 
-      {modalOpen &&
-        createPortal(
-          <BillModal open={modalOpen} onClose={() => setModalOpen(false)} bill={bill}>
-            <BillModal.Header>
-              <Typography variant="h5" component="div">
-                Bill Details - {bill.billNo}
-              </Typography>
-              <BillModal.Close />
-            </BillModal.Header>
-            <BillModal.Tabs />
-            <BillModal.Content />
-          </BillModal>,
-          document.body
-        )}
+      {modalOpen && (
+        <Modal open={modalOpen} onClose={() => setModalOpen(false)} data={bill} tabs={TABS}>
+          <Modal.Header>
+            <Typography variant="h5" component="div">
+              Bill Details - {bill.billNo}
+            </Typography>
+            <Modal.Close />
+          </Modal.Header>
+          <Modal.Tabs />
+          <Modal.Content>
+            {({ data, activeTab }) => <BillContent bill={data as Bill} activeTab={activeTab} />}
+          </Modal.Content>
+        </Modal>
+      )}
     </>
   );
 });

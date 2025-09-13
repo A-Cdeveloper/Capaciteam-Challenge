@@ -4,20 +4,18 @@ import { memo } from 'react';
 import type { Bill } from '@/types';
 import BillSponsors from '../table/BillSponsors';
 
-type BillModalContentProps = {
+type BillContentProps = {
   bill: Bill;
-  activeTab: number;
-  'data-testid'?: string;
+  activeTab: string;
 };
 
-const BillModalContent = memo(({ bill, activeTab, ...props }: BillModalContentProps) => {
-  const isEnglish = activeTab === 0;
+const BillContent = memo(({ bill, activeTab }: BillContentProps) => {
+  const isEnglish = activeTab === '0';
   const title = isEnglish ? bill.shortTitleEn : bill.shortTitleGa;
   const description = isEnglish ? bill.longTitleEn : bill.longTitleGa;
 
   return (
     <Box
-      {...props}
       sx={{
         px: 3,
         py: 3,
@@ -79,4 +77,4 @@ const BillModalContent = memo(({ bill, activeTab, ...props }: BillModalContentPr
   );
 });
 
-export default BillModalContent;
+export default BillContent;

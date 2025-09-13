@@ -2,26 +2,24 @@ import Box from '@mui/material/Box';
 import { memo } from 'react';
 import TabSwitcher from '@/components/ui/tabs/TabSwitcher';
 
-type BillModalTabsProps = {
-  activeTab: number;
-  onTabChange: (newValue: number) => void;
+type ModalTabsProps = {
+  activeTab: string;
+  onTabChange: (newValue: string) => void;
+  tabs: { label: string; value: string }[];
   'data-testid'?: string;
 };
 
-const BillModalTabs = memo(({ activeTab, onTabChange, ...props }: BillModalTabsProps) => {
+const ModalTabs = memo(({ activeTab, onTabChange, tabs, ...props }: ModalTabsProps) => {
   return (
     <Box sx={{ mb: 3 }} {...props}>
       <TabSwitcher
         activeTab={activeTab}
         onTabChange={onTabChange}
-        tabs={[
-          { label: 'English', value: 0 },
-          { label: 'Gaeilge', value: 1 },
-        ]}
+        tabs={tabs as { label: string; value: string }[]}
         ariaLabel="bill details tabs"
       />
     </Box>
   );
 });
 
-export default BillModalTabs;
+export default ModalTabs;

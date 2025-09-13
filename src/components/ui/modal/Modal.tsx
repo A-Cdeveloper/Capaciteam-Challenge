@@ -1,50 +1,52 @@
-import type { Bill } from '@/types';
 import { Close as CloseIcon } from '@mui/icons-material';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import { createContext, use, useState } from 'react';
-import BillModalContent from './BillModalContent';
-import BillModalTabs from './BillModalTabs';
+import ModalTabs from './ModalTabs';
+import { createPortal } from 'react-dom';
 
-type BillModalContextType = {
-  bill: Bill | null;
-  activeTab: number;
-  setActiveTab: (tab: number) => void;
+type ModalContextType<T> = {
+  data: T;
+  activeTab?: string;
+  setActiveTab?: (tab: string) => void;
   onClose: () => void;
+  tabs?: { label: string; value: string }[];
 };
 
-const BillModalContext = createContext<BillModalContextType | null>(null);
+const ModalContext = createContext<ModalContextType<unknown> | null>(null);
 
-const useBillModalContext = () => {
-  const context = use(BillModalContext);
+const useModalContext = () => {
+  const context = use(ModalContext);
   if (!context) {
-    throw new Error('useBillModalContext must be used within BillModal');
+    throw new Error('useModalContext must be used within Modal');
   }
   return context;
 };
 
 // Main component
-type BillModalProps = {
+type ModalProps<T> = {
   open: boolean;
   onClose: () => void;
-  bill: Bill | null;
+  data: T;
   children: React.ReactNode;
+  tabs?: { label: string; value: string }[];
 };
 
-const BillModalRoot = ({ open, onClose, bill, children }: BillModalProps) => {
-  const [activeTab, setActiveTab] = useState(0);
+const ModalRoot = <T,>({ open, onClose, data, children, tabs }: ModalProps<T>) => {
+  const [activeTab, setActiveTab] = useState('0');
 
-  const contextValue: BillModalContextType = {
-    bill,
+  const contextValue: ModalContextType<T> = {
+    data,
     activeTab,
     setActiveTab,
     onClose,
+    tabs,
   };
 
-  return (
-    <BillModalContext value={contextValue}>
+  return createPortal(
+    <ModalContext value={contextValue}>
       <Dialog
         data-testid="bill-modal"
         open={open}
@@ -62,7 +64,8 @@ const BillModalRoot = ({ open, onClose, bill, children }: BillModalProps) => {
       >
         <DialogContent sx={{ p: 0 }}>{children}</DialogContent>
       </Dialog>
-    </BillModalContext>
+    </ModalContext>,
+    document.body
   );
 };
 
@@ -85,7 +88,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
 };
 
 const Close = () => {
-  const { onClose } = useBillModalContext();
+  const { onClose } = useModalContext();
 
   return (
     <IconButton
@@ -106,24 +109,35 @@ const Close = () => {
 };
 
 const Tabs = () => {
-  const { activeTab, setActiveTab } = useBillModalContext();
+  const { activeTab, setActiveTab, tabs } = useModalContext();
+  if (!tabs) return null;
   return (
-    <BillModalTabs data-testid="bill-modal-tabs" activeTab={activeTab} onTabChange={setActiveTab} />
+    <ModalTabs
+      data-testid="modal-tabs"
+      tabs={tabs}
+      activeTab={activeTab || '0'}
+      onTabChange={setActiveTab || (() => {})}
+    />
   );
 };
 
-const Content = () => {
-  const { bill, activeTab } = useBillModalContext();
-  if (!bill) return null;
-  return <BillModalContent data-testid="bill-modal-content" bill={bill} activeTab={activeTab} />;
+const Content = <T,>({
+  children,
+}: {
+  children: (props: { data: T; activeTab: string }) => React.ReactNode;
+}) => {
+  const { data, activeTab } = useModalContext();
+  if (!data || !activeTab) return null;
+
+  return <div data-testid="modal-content"> {children({ data: data as T, activeTab })}</div>;
 };
 
 //
-const BillModal = Object.assign(BillModalRoot, {
+const Modal = Object.assign(ModalRoot, {
   Header,
   Close,
   Tabs,
   Content,
 });
 
-export { BillModal };
+export { Modal };

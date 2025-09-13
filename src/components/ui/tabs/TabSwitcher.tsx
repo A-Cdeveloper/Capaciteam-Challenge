@@ -1,14 +1,14 @@
 import { memo } from 'react';
 import Tabs from './Tabs';
 
-type TabSwitcherProps<T extends number | string> = {
+type TabSwitcherProps<T extends string> = {
   activeTab: T;
   onTabChange: (tab: T) => void;
   tabs: Array<{ label: string; value: T }>;
   ariaLabel?: string;
 };
 
-const TabSwitcher = <T extends number | string>({
+const TabSwitcher = <T extends string>({
   activeTab,
   onTabChange,
   tabs,
