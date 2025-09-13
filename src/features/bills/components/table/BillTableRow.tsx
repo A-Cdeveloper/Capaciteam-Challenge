@@ -8,7 +8,7 @@ import { BILLS_TABLE_COLUMNS } from '@/features/bills/constants/tableColumns';
 import BillSponsors from './BillSponsors';
 import BillStatusChip from './BillStatus';
 import FavoriteButton from './FavoriteButton';
-import { Modal } from '@/components/ui/modal/Modal';
+import { Modal } from '@/components/ui/modal';
 import BillContent from './BillContent';
 // import { BillModal } from '../modal';
 
