@@ -1,9 +1,6 @@
-export type ApiSuccessResponse<T> = {
+export type ApiSuccessResponse<T, TCounts> = {
   head: {
-    counts: {
-      billCount: number;
-      resultCount: number;
-    };
+    counts: TCounts;
   };
   results: T[];
 };

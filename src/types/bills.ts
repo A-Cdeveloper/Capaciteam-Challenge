@@ -43,6 +43,13 @@ export type Bill = {
 
 export type FavoriteBill = Bill & { isFavorite: boolean };
 
+import type { ApiSuccessResponse } from './api';
+
 export type ApiBill = {
   bill: Bill;
 };
+
+export type BillsApiResponse = ApiSuccessResponse<
+  ApiBill,
+  { billCount: number; resultCount: number }
+>;

@@ -1,10 +1,9 @@
-import type { Bill } from '@/types';
-import type { ApiSuccessResponse } from '@/types/api';
+import type { BillsApiResponse } from '@/types';
 
 /**
  * Mock API response for testing bills functionality
  */
-export const mockBillsApiResponse: ApiSuccessResponse<{ bill: Bill }> = {
+export const mockBillsApiResponse: BillsApiResponse = {
   head: {
     counts: {
       billCount: 2,

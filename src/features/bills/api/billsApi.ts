@@ -1,4 +1,4 @@
-import type { ApiBill, ApiErrorResponse, ApiSuccessResponse, BillStatus } from '@/types';
+import type { ApiErrorResponse, BillsApiResponse, BillStatus } from '@/types';
 import { parseAsInteger, parseAsString } from 'nuqs';
 
 /**
@@ -15,7 +15,7 @@ export const fetchBills = async (
   page: number,
   limit: number,
   billStatus?: BillStatus
-): Promise<ApiSuccessResponse<ApiBill>> => {
+): Promise<BillsApiResponse> => {
   try {
     const skip = (page - 1) * limit;
 
@@ -34,7 +34,7 @@ export const fetchBills = async (
       throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
     }
 
-    const data: ApiSuccessResponse<ApiBill> = await response.json();
+    const data: BillsApiResponse = await response.json();
 
     return data;
   } catch (error) {

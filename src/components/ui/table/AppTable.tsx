@@ -29,7 +29,13 @@ const AppTable = <T,>({
   size = 'medium',
 }: AppTableProps<T>) => {
   const renderRow = (item: T) => (
-    <AppTableRow item={item} columns={columns} modalComponent={modalComponent} hover={true} />
+    <AppTableRow
+      key={item[columns[0].key as keyof T] as string}
+      item={item}
+      columns={columns}
+      modalComponent={modalComponent}
+      hover={true}
+    />
   );
 
   return (
