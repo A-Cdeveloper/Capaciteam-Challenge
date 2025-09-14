@@ -23,6 +23,7 @@
     "nuqs": "^2.5.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.1",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
@@ -32,6 +33,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
+    "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^5.0.0",
     "@vitest/ui": "^3.2.4",
     "eslint": "^9.33.0",

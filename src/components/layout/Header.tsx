@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -11,9 +12,11 @@ const Header = () => {
         py: 2,
       })}
     >
-      <Typography variant="h1" color="primary.main">
-        Capaciteam
-      </Typography>
+      <Link to="/" style={{ textDecoration: 'none' }}>
+        <Typography variant="h1" color="primary.main">
+          Capaciteam
+        </Typography>
+      </Link>
     </Box>
   );
 };

@@ -1,14 +1,14 @@
 import { MuiProvider } from '@/providers/mui/MuiProvider';
 import { QueryProvider } from '@/providers/react-query/QueryProvider';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './router/routerConfig';
 
-interface ProvidersProps {
-  children: React.ReactNode;
-}
-
-export const Providers = ({ children }: ProvidersProps) => {
+export const Providers = () => {
   return (
     <QueryProvider>
-      <MuiProvider>{children}</MuiProvider>
+      <MuiProvider>
+        <RouterProvider router={router} />
+      </MuiProvider>
     </QueryProvider>
   );
 };
