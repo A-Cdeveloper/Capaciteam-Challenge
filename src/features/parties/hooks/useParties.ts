@@ -1,7 +1,7 @@
 import type { Party, PartyResult } from '@/types';
 
 import { fetchParties } from '@/features/parties/api/partiesApi';
-import { useQuery } from '@tanstack/react-query';
+import { useApiData } from '@/hooks/useApiData';
 
 /**
  * Custom hook for fetching parties data with pagination
@@ -12,17 +12,12 @@ import { useQuery } from '@tanstack/react-query';
  * const { data, isLoading, error } = useParties(1, 10);
  */
 export const useParties = (page: number, limit: number) => {
-  return useQuery({
-    queryKey: ['parties', page, limit],
-    queryFn: async () => {
-      const data = await fetchParties(page, limit);
-
-      const flatResults: Party[] = data.results.map((r: PartyResult) => r.party);
-      return {
-        ...data,
-        results: flatResults,
-        resultsLength: flatResults.length,
-      };
-    },
-  });
+  return useApiData<Party, PartyResult>(
+    ['parties'],
+    fetchParties,
+    page,
+    limit,
+    undefined,
+    (results: PartyResult[]) => results.map((r) => r.party)
+  );
 };

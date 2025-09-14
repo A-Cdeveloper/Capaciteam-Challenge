@@ -34,15 +34,6 @@ const AllParties = memo(() => {
 
   return (
     <>
-      {/* <Box sx={{ marginBottom: 2 }}>
-        <Typography variant="h4" gutterBottom>
-          Political Parties
-        </Typography> */}
-      {/* <Typography
-          variant="body2"
-          color="text.secondary"
-          dangerouslySetInnerHTML={{ __html: countText }}
-        /> */}
       <Box
         sx={{
           display: 'flex',

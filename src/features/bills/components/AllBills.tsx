@@ -2,14 +2,13 @@ import { useQueryState } from 'nuqs';
 import { memo, useMemo } from 'react';
 
 import { ErrorMessage, Loading, Pagination } from '@/components/ui';
-import { AppTable } from '@/components/ui/table';
+import { AppTable, AppTableContainer } from '@/components/ui/table';
 import { PAGE_SIZE } from '@/config/constants';
 import { createBillTableColumns } from '@/features/bills/utils/tableColumns';
 import { useBills } from '@/features/bills/hooks/useBills';
 import { usePagination } from '@/hooks/usePagination';
 import type { BillStatus } from '@/types';
 import Box from '@mui/material/Box';
-import BillsContainer from './BillsContainer';
 import BillModal from './bill-data/BillModal';
 
 const AllBills = memo(() => {
@@ -41,7 +40,7 @@ const AllBills = memo(() => {
 
   return (
     <>
-      <BillsContainer countText={countText}>
+      <AppTableContainer countText={countText}>
         <AppTable
           data={filteredBills}
           columns={createBillTableColumns()}
@@ -54,7 +53,7 @@ const AllBills = memo(() => {
             message: 'There are no bills to display.',
           }}
         />
-      </BillsContainer>
+      </AppTableContainer>
 
       {/* Pagination - only for all tab */}
       {allCount > pageSize && (

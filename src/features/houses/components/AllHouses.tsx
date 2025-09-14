@@ -1,14 +1,13 @@
 import { memo, useMemo } from 'react';
 
 import { ErrorMessage, Loading, Pagination } from '@/components/ui';
-import { AppTable } from '@/components/ui/table';
+import { AppTable, AppTableContainer } from '@/components/ui/table';
 import { PAGE_SIZE } from '@/config/constants';
 import { useHouses } from '@/features/houses/hooks/useHouses';
 import { usePagination } from '@/hooks/usePagination';
 import type { House, HouseType } from '@/types';
 import Box from '@mui/material/Box';
 import { createHousesTableColumns } from '../utils/tableColumns';
-import HousesContainer from './HousesContainer';
 import { useQueryState } from 'nuqs';
 
 const AllHouses = memo(() => {
@@ -40,7 +39,7 @@ const AllHouses = memo(() => {
 
   return (
     <>
-      <HousesContainer countText={countText}>
+      <AppTableContainer countText={countText}>
         <AppTable<House>
           data={data?.results || []}
           columns={createHousesTableColumns()}
@@ -50,7 +49,7 @@ const AllHouses = memo(() => {
             message: 'There are no houses to display.',
           }}
         />
-      </HousesContainer>
+      </AppTableContainer>
 
       {/* Pagination */}
       {allCount > pageSize && (
