@@ -4,7 +4,7 @@ export type Party = {
   showAs: string;
 };
 
-export type House = {
+export type PartyHouse = {
   showAs: string;
   uri: string;
   houseCode: string;
@@ -13,7 +13,7 @@ export type House = {
 
 export type PartyResult = {
   party: Party;
-  house: House;
+  house: PartyHouse;
 };
 
 import type { ApiSuccessResponse } from './api';

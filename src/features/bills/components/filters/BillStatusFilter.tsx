@@ -4,7 +4,6 @@ import type { BillStatus } from '@/types';
 import { BILL_STATUS } from '@/types';
 import { SelectFilter } from '@/components/ui/filters';
 
-// Izvuci van komponente - kreira se samo jednom
 const OPTIONS = Object.values(BILL_STATUS).map((status) => ({
   label: status,
   value: status,

@@ -29,8 +29,8 @@ const SelectFilter = <T,>({
   label,
   allOption = true,
   allLabel = 'All',
-  width = 120,
-  minWidth = 200,
+  width = 150,
+  minWidth = 280,
 }: SelectFilterProps<T>) => {
   const displayValue = value ? String(value) : allOption ? allLabel : '';
 

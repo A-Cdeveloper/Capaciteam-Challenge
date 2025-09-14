@@ -20,6 +20,14 @@ const HomePage = () => {
         >
           View Parties
         </Button>
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() => navigate('/houses')}
+          size="large"
+        >
+          View Houses
+        </Button>
       </Box>
     </Stack>
   );

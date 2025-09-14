@@ -2,6 +2,7 @@ export const routes = {
   home: '/',
   bills: '/bills',
   parties: '/parties',
+  houses: '/houses',
   notFound: '*',
 } as const;
 
