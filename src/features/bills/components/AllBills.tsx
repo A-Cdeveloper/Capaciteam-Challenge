@@ -26,12 +26,12 @@ const AllBills = memo(() => {
 
   // Filter bills and get total count for pagination
   const { filteredBills, allCount } = useMemo(() => {
-    const allCount = data?.head.counts.billCount || 0;
+    const allCount = (data?.head.counts as { billCount: number })?.billCount || 0;
     return {
       filteredBills: data?.results || [],
       allCount,
     };
-  }, [data?.results, data?.head.counts.billCount]);
+  }, [data?.results, data?.head.counts]);
 
   if (isLoading) return <Loading />;
   if (error) return <ErrorMessage error={error} onRetry={refetch} title="Failed to load bills" />;

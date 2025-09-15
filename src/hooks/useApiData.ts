@@ -18,7 +18,7 @@ export const useApiData = <T, TApiResult, TFilter = undefined>(
     page: number,
     limit: number,
     filter?: TFilter
-  ) => Promise<{ results: TApiResult[]; head: { counts: number }; [key: string]: unknown }>,
+  ) => Promise<{ results: TApiResult[]; head: { counts: unknown }; [key: string]: unknown }>,
   page: number,
   limit: number,
   filter?: TFilter,
