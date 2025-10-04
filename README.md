@@ -2,7 +2,7 @@
 
 A React application for browsing and managing legislation bills with advanced filtering, pagination, favorites functionality, and interactive modal details with bilingual support.
 
-🌐 **Live Demo**: [https://capaciteam-challenge2.vercel.app/](https://capaciteam-challenge2.vercel.app/)
+🌐 **Live Demo**: [here](https://capaciteam-challenge-a-cdeveloper-acdevelopers-projects.vercel.app/)
 
 ## Features
 
