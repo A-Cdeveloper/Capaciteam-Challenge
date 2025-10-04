@@ -26,6 +26,7 @@ export const useApiData = <T, TApiResult, TFilter = undefined>(
 ) => {
   return useQuery({
     queryKey: [...queryKey, page, limit, filter],
+    placeholderData: (prevData) => prevData,
     queryFn: async () => {
       const data = await fetchFn(page, limit, filter);
       const flatResults = transformFn
