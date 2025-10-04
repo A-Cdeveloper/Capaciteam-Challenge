@@ -12,7 +12,7 @@ import { useApiData } from '@/hooks/useApiData';
  * const { data, isLoading, error } = useParties(1, 10);
  */
 export const useParties = (page: number, limit: number) => {
-  return useApiData<Party, PartyResult>(
+  return useApiData<Party, PartyResult, { partyCount: number; resultCount: number }>(
     ['parties'],
     fetchParties,
     page,

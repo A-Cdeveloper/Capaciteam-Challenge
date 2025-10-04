@@ -21,11 +21,11 @@ const AllParties = memo(() => {
 
   // Get total count for pagination
   const { allCount } = useMemo(() => {
-    const allCount = data?.head.counts.partyCount || 0;
+    const allCount = data?.head?.counts?.partyCount || 0;
     return {
       allCount,
     };
-  }, [data?.head.counts.partyCount]);
+  }, [data?.head?.counts?.partyCount]);
 
   if (isLoading) return <Loading />;
   if (error) return <ErrorMessage error={error} onRetry={refetch} title="Failed to load parties" />;

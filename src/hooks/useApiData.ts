@@ -12,13 +12,13 @@ import { useQuery } from '@tanstack/react-query';
  * @example
  * const { data, isLoading, error } = useApiData<Bill, ApiBill, BillStatus>(['bills'], fetchBills, 1, 10, 'Current', (r) => r.map(x => x.bill));
  */
-export const useApiData = <T, TApiResult, TFilter = undefined>(
+export const useApiData = <T, TApiResult, TCounts, TFilter = undefined>(
   queryKey: string[],
   fetchFn: (
     page: number,
     limit: number,
     filter?: TFilter
-  ) => Promise<{ results: TApiResult[]; head: { counts: unknown }; [key: string]: unknown }>,
+  ) => Promise<{ results: TApiResult[]; head: { counts: TCounts }; [key: string]: unknown }>,
   page: number,
   limit: number,
   filter?: TFilter,

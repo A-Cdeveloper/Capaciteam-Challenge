@@ -13,7 +13,7 @@ import { useApiData } from '@/hooks/useApiData';
  * const { data, isLoading, error } = useHouses(1, 10, 'dail');
  */
 export const useHouses = (page: number, limit: number, houseType?: HouseType) => {
-  return useApiData<House, HouseResult, HouseType>(
+  return useApiData<House, HouseResult, { housesCount: number; resultCount: number }, HouseType>(
     ['houses'],
     fetchHouses,
     page,

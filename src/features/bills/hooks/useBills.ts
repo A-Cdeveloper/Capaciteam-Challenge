@@ -13,7 +13,7 @@ import { useApiData } from '@/hooks/useApiData';
  * const { data, isLoading, error } = useBills(1, 10, 'Current');
  */
 export const useBills = (page: number, limit: number, billStatus?: BillStatus) => {
-  return useApiData<Bill, ApiBill, BillStatus>(
+  return useApiData<Bill, ApiBill, { billCount: number; resultCount: number }, BillStatus>(
     ['bills'],
     fetchBills,
     page,
